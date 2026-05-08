@@ -146,23 +146,172 @@ const sectionObserver = new IntersectionObserver(
 );
 sections.forEach(s => sectionObserver.observe(s));
 
-// ===== FORM SUBMIT =====
-function submitForm(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('button[type="submit"]');
-  btn.textContent = 'Đang gửi...';
-  btn.disabled = true;
+// ===== FORM SUBMIT TO CMS / HUBSPOT =====
+const SITE_URL = 'https://sigroup.vn';
+const URL_AJAX = 'https://sigroup.vn/wp-admin/admin-ajax.php';
 
-  setTimeout(() => {
-    btn.textContent = 'Gửi Yêu Cầu Tư Vấn Miễn Phí →';
-    btn.disabled = false;
-    e.target.reset();
-
-    const toast = document.getElementById('successToast');
-    toast.classList.remove('hidden');
-    setTimeout(() => toast.classList.add('hidden'), 4000);
-  }, 1200);
+function getQueryParam(name) {
+  return new URLSearchParams(window.location.search).get(name) || '';
 }
+
+function fillTrackingFields() {
+  const trackingFields = [
+    'utm_source', 'utm_medium', 'utm_campaign', 'utm_id', 'utm_term', 'utm_content',
+    'hsa_acc', 'hsa_cam', 'hsa_grp', 'hsa_ad', 'hsa_src', 'hsa_net', 'hsa_ver'
+  ];
+
+  trackingFields.forEach(field => {
+    const input = document.getElementById(field);
+    if (!input) return;
+    const value = getQueryParam(field);
+    if (value) input.value = value;
+  });
+
+  const source = getQueryParam('utm_source');
+  const nguonLead = document.getElementById('nguon_lead');
+  if (nguonLead && source) nguonLead.value = source;
+
+  const utmId = document.getElementById('utm_id');
+  if (utmId && !utmId.value) utmId.value = 'null';
+}
+
+function initCmsHubspotContactForm() {
+  const form = document.getElementById('home-contact-ladipage');
+  if (!form) return;
+
+  const phoneInput = document.getElementById('PhoneNumber');
+  const alertBox = form.querySelector('.home-contact-alert');
+  const submitBtn = document.getElementById('si-btn');
+
+  fillTrackingFields();
+
+  if (phoneInput) {
+    phoneInput.addEventListener('input', function () {
+      this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+    });
+
+    phoneInput.addEventListener('paste', function (e) {
+      e.preventDefault();
+      const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+      this.value = pastedText.replace(/[^0-9]/g, '').slice(0, 10);
+    });
+
+    phoneInput.addEventListener('keypress', function (e) {
+      const char = String.fromCharCode(e.which);
+      if (!/[0-9]/.test(char)) e.preventDefault();
+    });
+  }
+
+  function setAlert(message, type = 'error') {
+    if (!alertBox) {
+      alert(message);
+      return;
+    }
+    alertBox.textContent = message;
+    alertBox.className = `home-contact-alert ${type}`;
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    fillTrackingFields();
+
+    const fullNameInput = form.querySelector('input[name="FullName"]');
+    const yearBornInput = form.querySelector('input[name="YearBorn"]');
+    const phoneInputEl = form.querySelector('input[name="PhoneNumber"]');
+    const emailInput = form.querySelector('input[name="Email"]');
+    const citySelect = form.querySelector('select[name="thanh_pho"]');
+    const programSelect = form.querySelector('select[name="chuong_trinh_quan_tam"]');
+
+    const FullName = fullNameInput.value.trim();
+    const YearBorn = yearBornInput.value.trim();
+    let PhoneNumber = phoneInputEl.value.trim().replace(/\D/g, '');
+    const Email = emailInput.value.trim();
+    const thanh_pho = citySelect.value.trim();
+    const chuong_trinh_quan_tam = programSelect.value.trim();
+
+    if (FullName === '') {
+      setAlert('Họ và Tên là bắt buộc.');
+      fullNameInput.focus();
+      return;
+    }
+    if (YearBorn === '') {
+      setAlert('Năm sinh là bắt buộc.');
+      yearBornInput.focus();
+      return;
+    }
+    if (PhoneNumber === '') {
+      setAlert('Số điện thoại là bắt buộc.');
+      phoneInputEl.focus();
+      return;
+    }
+    if (PhoneNumber.length !== 10) {
+      setAlert('Số điện thoại phải có đúng 10 chữ số.');
+      phoneInputEl.focus();
+      return;
+    }
+
+    const validPrefixes = ['032', '033', '034', '035', '036', '037', '038', '039', '056', '058', '059', '070', '076', '077', '078', '079', '081', '082', '083', '084', '085', '086', '088', '089', '090', '091', '092', '093', '094', '096', '097', '098', '099'];
+    const prefix = PhoneNumber.substring(0, 3);
+    if (!validPrefixes.includes(prefix)) {
+      setAlert('Số điện thoại không hợp lệ. Vui lòng nhập đúng đầu số di động Việt Nam.');
+      phoneInputEl.focus();
+      return;
+    }
+
+    phoneInputEl.value = PhoneNumber;
+
+    if (Email === '') {
+      setAlert('Email là bắt buộc.');
+      emailInput.focus();
+      return;
+    }
+    if (chuong_trinh_quan_tam === '') {
+      setAlert('Chương trình là bắt buộc.');
+      programSelect.focus();
+      return;
+    }
+    if (thanh_pho === '') {
+      setAlert('Tỉnh thành là bắt buộc.');
+      citySelect.focus();
+      return;
+    }
+
+    const formData = new FormData(form);
+    formData.append('action', 'register_sig_contact');
+
+    if (submitBtn) {
+      submitBtn.textContent = 'Đang gửi...';
+      submitBtn.disabled = true;
+    }
+    setAlert('Đang gửi thông tin...', 'loading');
+
+    fetch(URL_AJAX, {
+      method: 'POST',
+      body: formData,
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status) {
+          window.location.href = SITE_URL + '/thank-you';
+          window.parent.location.href = SITE_URL + '/thank-you';
+        } else {
+          setAlert('Error: ' + (data.response || 'Không gửi được thông tin.'));
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        setAlert('Không gửi được thông tin. Vui lòng thử lại hoặc liên hệ hotline.');
+      })
+      .finally(() => {
+        if (submitBtn) {
+          submitBtn.textContent = 'Gửi đi';
+          submitBtn.disabled = false;
+        }
+      });
+  });
+}
+
+initCmsHubspotContactForm();
 
 // ===== STICKY CTA =====
 const stickyCta = document.getElementById('stickyCta');
