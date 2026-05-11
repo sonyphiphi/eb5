@@ -292,6 +292,9 @@ function initCmsHubspotContactForm() {
       .then(response => response.json())
       .then(data => {
         if (data.status) {
+          if (typeof fbq === 'function') {
+            fbq('track', 'Lead');
+          }
           window.location.href = SITE_URL + '/thank-you';
           window.parent.location.href = SITE_URL + '/thank-you';
         } else {
