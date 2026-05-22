@@ -146,6 +146,29 @@ const sectionObserver = new IntersectionObserver(
 );
 sections.forEach(s => sectionObserver.observe(s));
 
+
+// ===== SECTION 3 CONCERN TABS =====
+function initConcernTabs() {
+  const tabs = document.querySelectorAll('[data-concern-tab]');
+  const panels = document.querySelectorAll('[data-concern-panel]');
+  if (!tabs.length || !panels.length) return;
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('data-concern-tab');
+      tabs.forEach(item => {
+        const isActive = item === tab;
+        item.classList.toggle('active', isActive);
+        item.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+      panels.forEach(panel => {
+        panel.classList.toggle('active', panel.getAttribute('data-concern-panel') === target);
+      });
+    });
+  });
+}
+initConcernTabs();
+
 // ===== FORM SUBMIT TO CMS / HUBSPOT =====
 const SITE_URL = 'https://sigroup.vn';
 const URL_AJAX = 'https://sigroup.vn/wp-admin/admin-ajax.php';
