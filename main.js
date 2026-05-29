@@ -94,20 +94,21 @@ setTimeout(() => {
 // ===== FAQ ACCORDION =====
 function toggleFaq(btn) {
   const item = btn.closest('.faq-item');
-  const answer = item.querySelector('.faq-a');
+  const group = btn.closest('.faq-group');
+  const answer = item?.querySelector('.faq-a');
+  if (!item || !group || !answer) return;
+
   const isOpen = item.classList.contains('open');
 
-  // Close all
-  document.querySelectorAll('.faq-item.open').forEach(openItem => {
-    openItem.classList.remove('open');
-    openItem.querySelector('.faq-a').classList.remove('open');
+  group.querySelectorAll('.faq-item.open').forEach(openItem => {
+    if (openItem !== item) {
+      openItem.classList.remove('open');
+      openItem.querySelector('.faq-a')?.classList.remove('open');
+    }
   });
 
-  // Open clicked if was closed
-  if (!isOpen) {
-    item.classList.add('open');
-    answer.classList.add('open');
-  }
+  item.classList.toggle('open', !isOpen);
+  answer.classList.toggle('open', !isOpen);
 }
 
 // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
@@ -657,7 +658,6 @@ function eb5RenderProjectList() {
       <span class="case-list-main">
         <span class="case-list-title-row"><span class="case-list-num">#${index + 1}</span><span class="case-list-title">${eb5EscapeHtml(proj.title)}</span></span>
         <span class="case-list-sub">${eb5EscapeHtml(proj.subtitle)}</span>
-        <span class="case-list-location">${eb5EscapeHtml(proj.location)}</span>
       </span>
       <span class="case-list-meta"><span class="case-status ${eb5StatusClass(proj.statusKey)}">${eb5EscapeHtml(proj.status)}</span><span class="case-list-invest">${eb5EscapeHtml(String(proj.investment).split('/')[0])}</span></span>
     </button>`).join('');
@@ -680,7 +680,6 @@ function eb5SelectProject(index) {
         <div>
           <div class="case-badge-row"><span class="case-country">${eb5EscapeHtml(proj.country)}</span><span class="case-status ${eb5StatusClass(proj.statusKey)}">${eb5EscapeHtml(proj.status)}</span></div>
           <h3 class="case-detail-title">${eb5EscapeHtml(proj.title)}</h3>
-          <p class="case-detail-subtitle">${eb5EscapeHtml(proj.subtitle)}</p>
           <p class="case-detail-desc">${eb5EscapeHtml(proj.description)}</p>
         </div>
         <div class="case-spec-grid">
