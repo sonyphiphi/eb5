@@ -8,16 +8,27 @@ const announceBar = document.querySelector('.announce-bar');
 
 function updateNavbar() {
   const offset = announceBar ? announceBar.offsetHeight : 0;
+  const isMobileHeader = window.matchMedia('(max-width: 768px)').matches;
   if (window.scrollY > 60) {
     navbar.classList.add('scrolled');
-    navbar.style.top = '0';
+    navbar.style.top = isMobileHeader ? offset + 'px' : '0';
   } else {
     navbar.classList.remove('scrolled');
     navbar.style.top = offset + 'px';
   }
 }
 window.addEventListener('scroll', updateNavbar, { passive: true });
+window.addEventListener('resize', updateNavbar, { passive: true });
 updateNavbar();
+
+// ===== MOBILE MENU =====
+function toggleMobileMenu(forceClose = false) {
+  const navLinksEl = document.getElementById('navLinks');
+  if (!navLinksEl) return;
+  const shouldOpen = forceClose ? false : !navLinksEl.classList.contains('mobile-open');
+  navLinksEl.classList.toggle('mobile-open', shouldOpen);
+  document.body.classList.toggle('mobile-menu-open', shouldOpen);
+}
 
 // ===== SCROLL REVEAL =====
 const revealObserver = new IntersectionObserver(
@@ -122,6 +133,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       window.scrollTo({ top, behavior: 'smooth' });
       // Close mobile menu
       document.getElementById('navLinks').classList.remove('mobile-open');
+      document.body.classList.remove('mobile-menu-open');
     }
   });
 });

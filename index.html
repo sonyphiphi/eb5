@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20260529-faq-accordion-clean">
+  <link rel="stylesheet" href="style.css?v=20260529-mobile-header-cta">
   <!-- TikTok Pixel Code Start -->
   <script>
   !function (w, d, t) {
@@ -64,7 +64,7 @@
       </div>
       <div class="nav-right">
         <a href="tel:+84979355355" class="nav-phone">(+84) 979 355 355</a>
-        <div class="menu-toggle" id="menuToggle" onclick="document.getElementById('navLinks').classList.toggle('mobile-open')">
+        <div class="menu-toggle" id="menuToggle" onclick="toggleMobileMenu()">
           <span></span><span></span><span></span>
         </div>
       </div>
@@ -155,8 +155,7 @@
       <div class="opportunity-panel glass reveal">
         <div class="opportunity-copy">
           <h3>Vì sao nhà đầu tư Việt nên chủ động trước khi bị áp lực hạn ngạch?</h3>
-          <p>Số lượng visa EB-5 được cấp cho nhà đầu tư Việt Nam phản ánh một xu hướng rõ rệt rằng giới tinh hoa Việt Nam đang ngày càng chủ động trong việc tái cấu trúc tài sản, đồng thời tìm kiếm các giải pháp định cư dài hạn cho thế hệ kế tiếp. EB-5 không còn là lựa chọn mang tính cơ hội, mà đang dần trở thành một phần trong chiến lược tài chính và di trú của nhiều gia đình.</p>
-          <p>Tuy nhiên, chính tốc độ gia tăng này cũng mang lại một hệ quả quan trọng, đó là khi một thị trường tăng trưởng nhanh về số lượng hồ sơ, áp lực hạn ngạch sẽ xuất hiện sớm hơn kỳ vọng. Những thị trường từng có lợi thế visa như Trung Quốc hay Ấn Độ đã đi trước trong chu kỳ này và hiện đang đối mặt với tình trạng tồn đọng kéo dài nhiều năm.</p>
+          <p>Số lượng visa EB-5 cấp cho Việt Nam tăng vọt phản ánh xu hướng giới tinh hoa đang chủ động tái cấu trúc tài sản và tìm kiếm giải pháp định cư dài hạn cho thế hệ kế tiếp. Tuy nhiên, tốc độ tăng trưởng quá nhanh này sẽ khiến áp lực hạn ngạch xuất hiện sớm hơn kỳ vọng. Bài học từ Trung Quốc và Ấn Độ cho thấy việc chậm chân trong chu kỳ này sẽ dẫn đến tình trạng tồn đọng hồ sơ kéo dài nhiều năm.</p>
           <span>Nguồn: U.S. Department of State · Fiscal Year 2025</span>
         </div>
         <div class="opportunity-metric">
@@ -169,19 +168,19 @@
         <article class="opportunity-card glass reveal" style="transition-delay:0.05s">
           <div class="opportunity-icon">C</div>
           <h3>Việt Nam vẫn đang ở “vùng thuận lợi”</h3>
-          <p>Theo hệ thống Visa Bulletin của Mỹ, nhiều nhóm EB-5, đặc biệt là các nhóm ưu tiên, hiện vẫn đang ở trạng thái “Current”, nghĩa là hồ sơ có thể được nộp và xử lý ngay mà chưa bị giới hạn bởi thời điểm nộp trước đó. Đây là một lợi thế quan trọng, giúp nhà đầu tư Việt Nam rút ngắn đáng kể thời gian chờ đợi so với các thị trường đã bị backlog.</p>
+          <p>Theo Visa Bulletin, các nhóm EB-5 ưu tiên cho Việt Nam hiện vẫn ở trạng thái “Current” (nộp và xử lý ngay, không phụ thuộc vào ngày ưu tiên). Đây là lợi thế vàng giúp rút ngắn tối đa thời gian chờ đợi so với các thị trường bị backlog.</p>
           <span>Nguồn: U.S. DOS, Visa Bulletin</span>
         </article>
         <article class="opportunity-card glass reveal" style="transition-delay:0.1s">
           <div class="opportunity-icon warning">!</div>
           <h3>Áp lực hạn ngạch đang hình thành</h3>
-          <p>Khi nhu cầu tăng nhanh, hệ thống phân bổ visa có thể đạt giới hạn sớm hơn dự kiến. Một khi điều đó xảy ra, thời gian chờ đợi sẽ kéo dài, và lợi thế hiện tại của các nhà đầu tư đi sau sẽ bị thu hẹp đáng kể.</p>
+          <p>Khi nhu cầu tăng nhanh, hệ thống phân bổ visa có thể đạt giới hạn sớm hơn dự kiến. Khi điều đó xảy ra, thời gian chờ đợi sẽ kéo dài và lợi thế của các nhà đầu tư đi sau sẽ bị thu hẹp đáng kể.</p>
           <span>Nguồn: U.S. Department of State</span>
         </article>
         <article class="opportunity-card glass reveal" style="transition-delay:0.15s">
           <div class="opportunity-icon lock">▣</div>
           <h3>Deadline chiến lược Grandfathering</h3>
-          <p>Mốc 30/09/2026 được xem là “deadline chiến lược” của toàn bộ chương trình EB-5 trong giai đoạn hiện tại. Các hồ sơ nộp trước thời điểm này có thể được bảo vệ theo khung luật hiện hành, đồng nghĩa với việc giữ nguyên mức vốn đầu tư và các điều kiện xét duyệt, ngay cả khi chính sách có thay đổi sau đó.</p>
+          <p>Mốc 30/09/2026 là “deadline chiến lược” của toàn bộ chương trình EB-5. Hồ sơ nộp trước thời điểm này sẽ được bảo vệ theo khung luật hiện hành (Grandfathering), giữ nguyên mức vốn đầu tư và điều kiện xét duyệt ngay cả khi chính sách có thay đổi sau đó.</p>
           <span>Nguồn: USCIS &amp; Đạo luật RIA</span>
         </article>
       </div>
@@ -454,61 +453,59 @@
       <h2 class="section-title reveal">Nguyên Tắc Lựa Chọn <em>Dự Án EB-5</em></h2>
       <p class="section-subtitle reveal">Mỗi dự án trong danh sách làm việc của SI không chỉ được đánh giá ở cấp độ dự án, mà còn ở cấp độ đối tác triển khai. SI chỉ hợp tác với các Trung tâm vùng uy tín, có lịch sử triển khai thành công nhiều dự án EB-5 tại Mỹ. Các yếu tố được xem xét bao gồm năng lực phát triển, lịch sử hoàn vốn, cũng như tỷ lệ hồ sơ đạt Thẻ xanh vĩnh viễn. Điều này đảm bảo dự án không chỉ khả thi trên lý thuyết, mà đã được kiểm chứng qua nhiều chu kỳ thị trường.</p>
 
-      <div class="principles-grid principles-grid-five">
+      <div class="principles-grid">
         <article class="principle-card glass reveal" style="transition-delay:0.1s">
           <div class="principle-card-top">
             <span class="principle-number">01</span>
-            <span class="principle-tag">Cấu trúc vốn</span>
+            <span class="principle-tag">CẤU TRÚC VỐN</span>
           </div>
-          <h3>Cấu trúc tài chính minh bạch và vị trí vốn EB-5</h3>
-          <p>Một trong những tiêu chí quan trọng nhất là cấu trúc vốn của dự án. SI đánh giá rõ ràng vị trí của dòng vốn EB-5 trong tổng thể tài chính: là vốn chủ, vốn vay hay nằm ở tầng nào trong cấu trúc.</p>
-          <p>Các dự án được lựa chọn phải có cấu trúc minh bạch, hợp lý và hạn chế phụ thuộc vào các nguồn vốn rủi ro. Điều này giúp kiểm soát tốt hơn khả năng hoàn vốn cũng như mức độ an toàn của dòng tiền trong toàn bộ vòng đời dự án.</p>
+          <h3>Cấu trúc vốn minh bạch &amp; Vị trí dòng tiền EB-5</h3>
+          <p>SI đánh giá khắt khe vị trí của nguồn vốn EB-5 nằm ở tầng nào trong cấu trúc tổng (vốn chủ, vốn vay ngân hàng hay vốn EB-5). Ưu tiên các dự án có cấu trúc hợp lý, ít phụ thuộc vào nguồn vốn rủi ro để kiểm soát tốt nhất khả năng hoàn vốn.</p>
         </article>
 
         <article class="principle-card glass reveal" style="transition-delay:0.15s">
           <div class="principle-card-top">
             <span class="principle-number">02</span>
-            <span class="principle-tag">Dòng tiền vận hành</span>
+            <span class="principle-tag">DÒNG TIỀN VẬN HÀNH</span>
           </div>
           <h3>Ưu tiên dự án có dòng tiền vận hành rõ ràng</h3>
-          <p>SI tập trung vào các dự án có mô hình khai thác thương mại cụ thể, thay vì các dự án phụ thuộc vào kỳ vọng thị trường. Đặc biệt, ưu tiên các dự án đã có sẵn hợp đồng thuê dài hạn với các đối tác lớn trước khi triển khai.</p>
-          <p>Việc xác định “đầu ra” ngay từ đầu giúp đảm bảo nguồn doanh thu dự kiến, tạo nền tảng vận hành ổn định và giảm thiểu rủi ro sau khi hoàn thành. Đây cũng là yếu tố quan trọng để duy trì dòng tiền và hỗ trợ khả năng hoàn vốn cho nhà đầu tư.</p>
+          <p>Tập trung vào dự án có mô hình khai thác thương mại cụ thể, đặc biệt là các dự án đã ký sẵn hợp đồng bao thuê dài hạn với các đối tác lớn trước khi khởi công. Việc xác định trước &quot;đầu ra&quot; giúp giảm thiểu rủi ro vận hành và bảo đảm dòng tiền hoàn vốn.</p>
         </article>
 
         <article class="principle-card glass reveal" style="transition-delay:0.2s">
           <div class="principle-card-top">
             <span class="principle-number">03</span>
-            <span class="principle-tag">Việc làm I-829</span>
+            <span class="principle-tag">VIỆC LÀM I-829</span>
           </div>
           <h3>Đảm bảo biên an toàn về tạo việc làm cho I-829</h3>
-          <p>Khả năng tạo việc làm là điều kiện bắt buộc để chuyển đổi sang Thẻ xanh vĩnh viễn. SI không chỉ đánh giá mức tối thiểu, mà yêu cầu các dự án phải có biên an toàn cao trong tính toán việc làm.</p>
-          <p>Điều này đảm bảo rằng ngay cả khi có biến động trong quá trình triển khai, dự án vẫn có thể đáp ứng đủ điều kiện theo quy định, giảm thiểu rủi ro cho giai đoạn I-829.</p>
+          <p>Khả năng tạo việc làm là điều kiện bắt buộc để đổi sang Thẻ xanh vĩnh viễn. SI không chỉ đánh giá mức tối thiểu (10 việc làm/khách), mà yêu cầu dự án phải có biên an toàn cao (thường đạt 150% - 200%) để bảo vệ hồ sơ I-829 trước mọi biến động.</p>
         </article>
 
         <article class="principle-card glass reveal" style="transition-delay:0.25s">
           <div class="principle-card-top">
             <span class="principle-number">04</span>
-            <span class="principle-tag">Nhóm dự án ưu tiên</span>
+            <span class="principle-tag">NHÓM DỰ ÁN ƯU TIÊN</span>
           </div>
-          <h3>Tận dụng các nhóm dự án ưu tiên để tối ưu tốc độ</h3>
-          <p>Cấu trúc EB-5 hiện tại phân bổ hạn ngạch riêng cho các nhóm dự án ưu tiên, đóng vai trò quyết định đến tốc độ xử lý hồ sơ.</p>
-          <p>SI định hướng khách hàng tiếp cận các dự án thuộc các nhóm Set-Asides, bao gồm:</p>
-          <ul class="principle-points">
-            <li>Khu vực nông thôn (chiếm tỷ trọng lớn nhất trong hạn ngạch và được ưu tiên xử lý nhanh)</li>
-            <li>Khu vực có tỷ lệ thất nghiệp cao</li>
-            <li>Các dự án hạ tầng</li>
-          </ul>
-          <p>Việc lựa chọn đúng nhóm không chỉ giúp rút ngắn thời gian xét duyệt, mà còn giảm áp lực cạnh tranh trong bối cảnh hạn ngạch ngày càng siết chặt.</p>
+          <h3>Tận dụng nhóm dự án ưu tiên để tối ưu tốc độ</h3>
+          <p>Định hướng dòng vốn vào các nhóm dự án được phân bổ hạn ngạch riêng và áp dụng chính sách xét duyệt ưu tiên tốc độ cao (Vùng nông thôn hoặc Cơ sở hạ tầng). Đây là chiến lược cốt lõi để rút ngắn thời gian xử lý hồ sơ.</p>
         </article>
 
         <article class="principle-card glass reveal" style="transition-delay:0.3s">
           <div class="principle-card-top">
             <span class="principle-number">05</span>
-            <span class="principle-tag">Track record &amp; hoàn vốn</span>
+            <span class="principle-tag">TRACK RECORD &amp; HOÀN VỐN</span>
           </div>
-          <h3>Lọc dự án dựa trên track record và khả năng hoàn vốn</h3>
-          <p>Bên cạnh yếu tố pháp lý và vận hành, SI đặc biệt chú trọng đến lịch sử triển khai của dự án và đối tác. Các dự án được lựa chọn đều phải có tiền lệ hoàn vốn rõ ràng và đã được kiểm chứng qua các chu kỳ trước.</p>
-          <p>Ví dụ, các Trung tâm vùng như CMB hay CanAm đã triển khai nhiều dự án EB-5 với lịch sử hoàn vốn đúng lộ trình và tỷ lệ chuyển đổi Thẻ xanh vĩnh viễn ở mức cao. Những dự án này thường có cấu trúc tài chính ổn định, mô hình vận hành rõ ràng và khả năng tạo việc làm vượt yêu cầu.</p>
+          <h3>Lọc dự án dựa trên Track Record của Trung tâm vùng</h3>
+          <p>Bên cạnh yếu tố dự án, SI đặc biệt chú trọng lịch sử triển khai của đối tác (CMB, CanAm...). Các dự án được chọn phải đến từ các Trung tâm vùng có tỷ lệ chấp thuận đơn I-526/I-829 và hoàn trả vốn gốc cho nhà đầu tư đạt mức 100%.</p>
+        </article>
+
+        <article class="principle-card glass reveal" style="transition-delay:0.35s">
+          <div class="principle-card-top">
+            <span class="principle-number">06</span>
+            <span class="principle-tag">TÀI SẢN THẾ CHẤP</span>
+          </div>
+          <h3>Tài sản thế chấp và Cơ chế kiểm soát tài khoản bảo chứng</h3>
+          <p>Dự án được chọn phải có tài sản thế chấp giá trị cao (như quỹ đất, bất động sản thương mại) để bảo đảm nghĩa vụ hoàn trả vốn gốc 800.000 USD. Đồng thời, dòng tiền giải ngân phải qua tài khoản bảo chứng (Escrow) nghiêm ngặt, chỉ được sử dụng đúng mục đích xây dựng.</p>
         </article>
       </div>
 
@@ -886,6 +883,6 @@
   <script type="text/javascript" id="hs-script-loader" async="" defer="" src="//js-na2.hs-scripts.com/43725162.js"></script>
   <!-- End of HubSpot Embed Code -->
 
-  <script src="main.js?v=20260529-faq-accordion-clean"></script>
+  <script src="main.js?v=20260529-mobile-header-cta"></script>
 </body>
 </html>
